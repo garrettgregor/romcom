@@ -69,3 +69,12 @@ function viewSavedCovers() {
   homeButton.classList.remove('hidden');
   saveCoverButton.classList.add('hidden');
 };
+
+function viewSavedCovers() {
+  formView.classList.add('hidden');
+  homeView.classList.add('hidden');
+  savedView.classList.remove('hidden');
+  homeButton.classList.remove('hidden');
+  saveCoverButton.classList.add('hidden');
+  changeCoverButton.classList.add('hidden');
+};
