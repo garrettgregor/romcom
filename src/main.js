@@ -1,8 +1,8 @@
 // Create variables targetting the relevant DOM elements here 👇
-const coverImage = document.querySelector('.cover-image');
-const coverTitle = document.querySelector('.cover-title');
-const coverTagline1 = document.querySelector('.tagline').querySelector('.tagline-1');
-const coverTagline2 = document.querySelector('.tagline').querySelector('.tagline-2');
+var coverImage = document.querySelector('.cover-image');
+var coverTitle = document.querySelector('.cover-title');
+var coverTagline1 = document.querySelector('.tagline').querySelector('.tagline-1');
+var coverTagline2 = document.querySelector('.tagline').querySelector('.tagline-2');
 // // buttons
 const changeCoverButton = document.querySelector('.random-cover-button');
 const makeCoverButton = document.querySelector('.make-new-button');
@@ -19,7 +19,12 @@ var savedCovers = [
   createCover("http://3.bp.blogspot.com/-iE4p9grvfpQ/VSfZT0vH2UI/AAAAAAAANq8/wwQZssi-V5g/s1600/Do%2BNot%2BForsake%2BMe%2B-%2BImage.jpg", "Sunsets and Sorrows", "sunsets", "sorrows"),
 ];
 
-var currentCover;
+var currentCover = {
+  imageUrl: coverImage.src,
+  title: coverTitle.innerText,
+  tagline1: coverTagline1.innerText,
+  tagline2: coverTagline2.innerText
+};
 
 var views = document.querySelectorAll('.view')
 
@@ -36,6 +41,11 @@ function changeCover() {
   coverTitle.innerText = titles[getRandomIndex(titles)];
   coverTagline1.innerText = descriptors[getRandomIndex(descriptors)];
   coverTagline2.innerText = descriptors[getRandomIndex(descriptors)];
+
+  currentCover.imageUrl = coverImage.src;
+  currentCover.title = coverTitle.innerText;
+  currentCover.tagline1 = coverTagline1.innerText;
+  currentCover.tagline2 = coverTagline2.innerText;
 };
 
 // We've provided two functions to get you started
@@ -43,10 +53,10 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
 
-function createCover(imgSrc, title, descriptor1, descriptor2) {
+function createCover(imageUrl, title, descriptor1, descriptor2) {
   var cover = {
     id: Date.now(),
-    coverImg: imgSrc,
+    imageUrl: imageUrl,
     title: title,
     tagline1: descriptor1,
     tagline2: descriptor2
