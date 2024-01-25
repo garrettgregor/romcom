@@ -1,9 +1,18 @@
 // Create variables targetting the relevant DOM elements here 👇
-coverImage = document.querySelector('.cover-image');
-coverTitle = document.querySelector('.cover-title');
-coverTagline1 = document.querySelector('.tagline').querySelector('.tagline-1');
-coverTagline2 = document.querySelector('.tagline').querySelector('.tagline-2');
-changeCoverButton = document.querySelector('.random-cover-button');
+const coverImage = document.querySelector('.cover-image');
+const coverTitle = document.querySelector('.cover-title');
+const coverTagline1 = document.querySelector('.tagline').querySelector('.tagline-1');
+const coverTagline2 = document.querySelector('.tagline').querySelector('.tagline-2');
+// // buttons
+const changeCoverButton = document.querySelector('.random-cover-button');
+const makeCoverButton = document.querySelector('.make-new-button');
+const saveCoverButton = document.querySelector('.save-cover-button');
+const savedCoversButton = document.querySelector('.view-saved-button');
+const homeButton = document.querySelector('.home-button');
+// // views
+const formView = document.querySelector('.form-view');
+const homeView = document.querySelector('.home-view');
+const savedView = document.querySelector('.saved-view');
 
 // We've provided a few variables below
 var savedCovers = [
@@ -12,8 +21,12 @@ var savedCovers = [
 
 var currentCover;
 
+var views = document.querySelectorAll('.view')
+
 // Add your event listeners here 👇
 changeCoverButton.addEventListener('click', changeCover);
+makeCoverButton.addEventListener('click', viewForm);
+savedCoversButton.addEventListener('click', viewSavedCovers);
 
 
 // Create your event handlers and other functions here 👇
@@ -40,3 +53,12 @@ function createCover(imgSrc, title, descriptor1, descriptor2) {
 
   return cover;
 };
+
+function viewForm() {
+  formView.classList.remove('hidden');
+  homeButton.classList.remove('hidden');
+  changeCoverButton.classList.add('hidden');
+  homeView.classList.add('hidden');
+  saveCoverButton.classList.add('hidden');
+};
+
