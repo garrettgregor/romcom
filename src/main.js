@@ -27,6 +27,7 @@ var views = document.querySelectorAll('.view')
 changeCoverButton.addEventListener('click', changeCover);
 makeCoverButton.addEventListener('click', viewForm);
 savedCoversButton.addEventListener('click', viewSavedCovers);
+homeButton.addEventListener('click', viewHome);
 
 
 // Create your event handlers and other functions here 👇
@@ -69,4 +70,13 @@ function viewSavedCovers() {
   homeButton.classList.remove('hidden');
   saveCoverButton.classList.add('hidden');
   changeCoverButton.classList.add('hidden');
+};
+
+function viewHome() {
+  formView.classList.add('hidden');
+  homeView.classList.remove('hidden');
+  savedView.classList.add('hidden');
+  homeButton.classList.add('hidden');
+  saveCoverButton.classList.remove('hidden');
+  changeCoverButton.classList.remove('hidden');
 };
