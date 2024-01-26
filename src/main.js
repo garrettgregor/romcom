@@ -131,15 +131,15 @@ function viewSavedCovers() {
 //   }
 // }
 
-function displaySavedCover(cover) {
-  var fragment = document.createDocumentFragment();
-  var li = fragment
-    .appendChild(document.createElement("mini-cover"))
-  li.textContent = "hello world";
+// function displaySavedCover(cover) {
+//   var fragment = document.createDocumentFragment();
+//   var li = fragment
+//     .appendChild(document.createElement("mini-cover"))
+//   li.textContent = "hello world";
 
-  savedView.appendChild(fragment);
-  // cover.classList.add('mini-cover')
-}
+//   savedView.appendChild(fragment);
+//   // cover.classList.add('mini-cover')
+// }
 
 function viewHome() {
   formView.classList.add('hidden');
