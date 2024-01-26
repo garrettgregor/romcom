@@ -6,6 +6,7 @@ var coverTagline2 = document.querySelector('.tagline').querySelector('.tagline-2
 // // buttons
 const changeCoverButton = document.querySelector('.random-cover-button');
 const makeCoverButton = document.querySelector('.make-new-button');
+const createCoverButton = document.querySelector('.create-new-book-button');
 const saveCoverButton = document.querySelector('.save-cover-button');
 const savedCoversButton = document.querySelector('.view-saved-button');
 const homeButton = document.querySelector('.home-button');
@@ -13,6 +14,7 @@ const homeButton = document.querySelector('.home-button');
 const formView = document.querySelector('.form-view');
 const homeView = document.querySelector('.home-view');
 const savedView = document.querySelector('.saved-view');
+
 
 // We've provided a few variables below
 var savedCovers = [
@@ -26,13 +28,13 @@ var currentCover = {
   tagline2: coverTagline2.innerText
 };
 
-var views = document.querySelectorAll('.view')
 
 // Add your event listeners here 👇
 changeCoverButton.addEventListener('click', changeCover);
 makeCoverButton.addEventListener('click', viewForm);
 savedCoversButton.addEventListener('click', viewSavedCovers);
 homeButton.addEventListener('click', viewHome);
+createCoverButton.addEventListener('click', createOriginalCover);
 
 
 // Create your event handlers and other functions here 👇
@@ -90,3 +92,31 @@ function viewHome() {
   saveCoverButton.classList.remove('hidden');
   changeCoverButton.classList.remove('hidden');
 };
+
+function createOriginalCover(event) {
+  event.preventDefault();
+
+  var url = document.querySelector('.user-cover').value;
+  var title = document.querySelector('.user-title').value;
+  var tagline1 = document.querySelector('.user-desc1').value;
+  var tagline2 = document.querySelector('.user-desc2').value;
+
+  covers.push(url);
+  titles.push(title);
+  descriptors.push(tagline1, tagline2);
+
+  var createdCover = createCover(url, title, tagline1, tagline2);
+  savedCovers.push(createdCover);
+
+  currentCover = createdCover;
+
+  displayCover();
+  viewHome();
+};
+
+function displayCover() {
+  coverImage.src = currentCover.imageUrl;
+  coverTitle.innerText = currentCover.title;
+  coverTagline1.innerText = currentCover.tagline1;
+  coverTagline2.innerText = currentCover.tagline2;
+}
