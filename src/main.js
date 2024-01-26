@@ -3,6 +3,7 @@ var coverImage = document.querySelector('.cover-image');
 var coverTitle = document.querySelector('.cover-title');
 var coverTagline1 = document.querySelector('.tagline').querySelector('.tagline-1');
 var coverTagline2 = document.querySelector('.tagline').querySelector('.tagline-2');
+var savedCoversSection = document.querySelector('.saved-covers-section');
 // // buttons
 const changeCoverButton = document.querySelector('.random-cover-button');
 const makeCoverButton = document.querySelector('.make-new-button');
@@ -33,6 +34,7 @@ var currentCover = {
 changeCoverButton.addEventListener('click', changeCover);
 makeCoverButton.addEventListener('click', viewForm);
 savedCoversButton.addEventListener('click', viewSavedCovers);
+saveCoverButton.addEventListener('click', saveCover);
 homeButton.addEventListener('click', viewHome);
 createCoverButton.addEventListener('click', createOriginalCover);
 
@@ -82,7 +84,62 @@ function viewSavedCovers() {
   homeButton.classList.remove('hidden');
   saveCoverButton.classList.add('hidden');
   changeCoverButton.classList.add('hidden');
+
+  savedCoversSection.innerHTML = ''; // Clear out the section first
+
+  for (var i = 0; i < savedCovers.length; i++) {
+    let coverDiv = document.createElement('div');
+    coverDiv.classList.add('cover', 'mini-cover');
+
+    let coverImg = document.createElement('img');
+    coverImg.classList.add('mini-cover');
+    coverImg.src = savedCovers[i].imageUrl;
+    coverDiv.appendChild(coverImg);
+
+    let coverTitle = document.createElement('h2');
+    coverTitle.classList.add('mini-cover');
+    coverTitle.innerText = savedCovers[i].title;
+    coverDiv.appendChild(coverTitle);
+
+    let tagline = document.createElement('h3');
+    tagline.innerText = `${savedCovers[i].tagline1} ${savedCovers[i].tagline2}`;
+    coverDiv.appendChild(tagline);
+
+    savedCoversSection.appendChild(coverDiv);
+  }
 };
+// function viewSavedCovers() {
+//   savedCoversSection.innerHTML = ''; // Clear out the section first
+
+//   for (let cover of savedCovers) {
+//     let coverDiv = document.createElement('div');
+//     coverDiv.classList.add('cover', 'mini-cover');
+
+//     let coverImg = document.createElement('img');
+//     coverImg.src = cover.coverImg;
+//     coverDiv.appendChild(coverImg);
+
+//     let coverTitle = document.createElement('h2');
+//     coverTitle.innerText = cover.title;
+//     coverDiv.appendChild(coverTitle);
+
+//     let tagline = document.createElement('h3');
+//     tagline.innerText = `${cover.tagline1} ${cover.tagline2}`;
+//     coverDiv.appendChild(tagline);
+
+//     savedCoversSection.appendChild(coverDiv);
+//   }
+// }
+
+function displaySavedCover(cover) {
+  var fragment = document.createDocumentFragment();
+  var li = fragment
+    .appendChild(document.createElement("mini-cover"))
+  li.textContent = "hello world";
+
+  savedView.appendChild(fragment);
+  // cover.classList.add('mini-cover')
+}
 
 function viewHome() {
   formView.classList.add('hidden');
@@ -119,4 +176,10 @@ function displayCover() {
   coverTitle.innerText = currentCover.title;
   coverTagline1.innerText = currentCover.tagline1;
   coverTagline2.innerText = currentCover.tagline2;
-}
+};
+
+function saveCover() {
+  if (!savedCovers.includes(currentCover)) {
+    savedCovers.push(currentCover)
+  }
+};
